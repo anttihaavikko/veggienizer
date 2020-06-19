@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public abstract class ObjectPool<T> : MonoBehaviour where T : Component
+public abstract class MyObjectPool<T> : MonoBehaviour where T : Component
 {
     [SerializeField]
     private T prefab;

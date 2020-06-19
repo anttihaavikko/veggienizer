@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : ObjectPool<SoundEffect> {
+public class AudioManager : MyObjectPool<SoundEffect> {
 
 	public AudioSource curMusic;
 	public AudioSource[] musics;

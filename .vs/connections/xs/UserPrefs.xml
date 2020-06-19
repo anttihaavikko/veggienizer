@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Face.cs">
+    <Files>
+      <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
+      <File FileName="Assets/Anima2D/Scripts/Editor/OnionSkin/OnionLayerManager.cs" Line="214" Column="1" />
+      <File FileName="Assets/Scripts/PlatformerController.cs" Line="293" Column="60" />
+      <File FileName="Assets/Scripts/Face.cs" Line="183" Column="29" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="connections" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Anima2D" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Editor" expanded="True">
+                    <Node name="OnionSkin" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="Face.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c0a7f1f0-6932-41a9-a5ef-8ee20915dd4f" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

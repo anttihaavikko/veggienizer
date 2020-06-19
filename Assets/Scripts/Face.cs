@@ -170,7 +170,7 @@ public class Face : MonoBehaviour {
 
 		if (pupils.Length > 0) {
 			for (int i = 0; i < pupils.Length; i++) {
-				pupils[i].localPosition = Vector2.MoveTowards(pupils[i].localPosition, Vector2.Scale(lookPos, pupilRange), Time.deltaTime * lookSpeed * 2f);
+				pupils[i].localPosition = Vector2.MoveTowards(pupils[i].localPosition, Vector2.Scale(lookPos.normalized, pupilRange), Time.deltaTime * lookSpeed * 2f);
 			}
 		}
 	}
