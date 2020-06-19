@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour {
+public class AudioManager : ObjectPool<SoundEffect> {
 
 	public AudioSource curMusic;
 	public AudioSource[] musics;
 
 	public float volume = 0.5f;
 	private float musVolume = 0.5f;
-	public SoundEffect effectPrefab;
 	public AudioClip[] effects;
 
 	public AudioLowPassFilter lowpass;
@@ -103,7 +102,8 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void PlayEffectAt(AudioClip clip, Vector3 pos, float volume, bool pitchShift = true) {
-		SoundEffect se = Instantiate (effectPrefab, pos, Quaternion.identity);
+		SoundEffect se = Get();
+        se.transform.position = pos;
 		se.Play (clip, volume, pitchShift);
 		se.transform.parent = transform;
 	}
