@@ -15,7 +15,7 @@ public class Dude : MonoBehaviour
     public TMP_Text scoreText, timeText;
 
     private float pullAmount;
-    private Veggie veggie;
+    private Veggie veggie, peekVeggie;
     private bool pulling;
     private bool carrying;
     private bool hasReset;
@@ -98,8 +98,11 @@ public class Dude : MonoBehaviour
             }
         }
 
-        if (veggie && button && carrying)
+        if (veggie && button && carrying && !peekVeggie)
             Drop();
+
+        if (veggie && button && carrying && peekVeggie)
+            Peek();
 
         anim.SetBool("pulling", pulling);
         anim.SetFloat("pull", pullAmount);
@@ -219,23 +222,50 @@ public class Dude : MonoBehaviour
             if(veg.IsEx())
             {
                 bubble.ShowMessage(veg.GetExInfo());
+
+                if (!veggie)
+                    veggie = veg;
+
+                return;
             }
 
             if (!veggie)
+            {
+                bubble.ShowMessage("Looks like there is some (vegetable) here. I could pick it up with <sprite=5>.");
                 veggie = veg;
+            }
+            else if(veg != veggie)
+            {
+                bubble.ShowMessage("I can only carry one (veggie) at a time but I could still peek at it with <sprite=5>.");
+                peekVeggie = veg;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == veggie)
+        if (collision.gameObject.tag == "Veggie Pull")
         {
-            veggie = null;
+            var veg = collision.gameObject.GetComponentInParent<Veggie>();
+
+            if (veg == peekVeggie)
+                peekVeggie = null;
+
+            if (veg == veggie)
+                veggie = null;
         }
 
         if (collision.gameObject.tag == "Area")
         {
             collision.gameObject.GetComponentInParent<Area>().Toggle(false);
         }
+    }
+
+    void Peek()
+    {
+        var amount = peekVeggie.GetValue();
+        var estimation = Mathf.CeilToInt(Random.Range(0.5f, 1.5f) * amount);
+        bubble.ShowMessage("This vegetable looks like it could be worth something around ("+ estimation + ").");
+        peekVeggie = null;
     }
 }
