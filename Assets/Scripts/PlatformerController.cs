@@ -151,23 +151,17 @@ public class PlatformerController : MonoBehaviour {
 
             if (Mathf.Abs(inputDirection) < 0.1f) inputDirection = 0f;
 
-            if (InputMagic.Instance.GetButton(InputMagic.A) && jumpFrames < allowedJumpFrames)
-            {
-                anim.SetTrigger("jump");
-                EnhanceJump();
-            }
-
             if (InputMagic.Instance.GetButtonUp(InputMagic.A))
             {
                 jumpFrames = allowedJumpFrames + 1;
             }
 
 			// jump
-			if ((grounded || (canDoubleJump && !doubleJumped)) && (InputMagic.Instance.GetButtonDown(InputMagic.A) || jumpBufferedFor > 0)) {
+			if ((grounded || (canDoubleJump && !doubleJumped)) && (InputMagic.Instance.GetButton(InputMagic.A) || jumpBufferedFor > 0)) {
 
                 Jump();
 
-			} else if (canControl && InputMagic.Instance.GetButtonDown(InputMagic.A)) {
+			} else if (canControl && InputMagic.Instance.GetButton(InputMagic.A)) {
 			
 				// jump command buffering
 				jumpBufferedFor = 0.2f;
@@ -275,6 +269,8 @@ public class PlatformerController : MonoBehaviour {
     {
         body.velocity = new Vector2(body.velocity.x, 0); // reset vertical speed
 
+        body.AddForce(Vector2.up * jump * Time.deltaTime, ForceMode2D.Impulse);
+
         //AudioManager.Instance.PlayEffectAt(7, feetPoint.position, 1.2571f);
         //AudioManager.Instance.PlayEffectAt(6, feetPoint.position, 0.194f);
         //AudioManager.Instance.PlayEffectAt(5, feetPoint.position, 0.102f);
@@ -313,7 +309,7 @@ public class PlatformerController : MonoBehaviour {
         body.gravityScale = gravity;
 
         jumpFrames = 0;
-        EnhanceJump();
+        //EnhanceJump();
     }
 
     private void EnhanceJump()
