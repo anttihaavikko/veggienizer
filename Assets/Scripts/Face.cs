@@ -52,6 +52,8 @@ public class Face : MonoBehaviour {
 	public bool followMouse = false;
     public Camera cam;
 
+    public bool flipped;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -159,12 +161,25 @@ public class Face : MonoBehaviour {
 	}
 
 	void MoveFace() {
-        Vector3 mp = Input.mousePosition;
-        mp.z = 10f;
-        Vector3 mouseInWorld = cam.ScreenToWorldPoint(mp);
-        Vector2 lookPos = mouseInWorld - transform.parent.position;
+        Vector2 lookPos = Vector2.zero;
+
+        if(lookTarget)
+        {
+            lookPos = lookTarget.position - transform.parent.position;
+        }
+
+        if(followMouse)
+        {
+            Vector3 mp = Input.mousePosition;
+            mp.z = 10f;
+            Vector3 mouseInWorld = cam.ScreenToWorldPoint(mp);
+            lookPos = mouseInWorld - transform.parent.position;
+        }
 
 		lookPos = Quaternion.Euler(new Vector3(0, 0, -transform.parent.rotation.eulerAngles.z)) * lookPos;
+
+        if (flipped)
+            lookPos = new Vector2(-lookPos.x, lookPos.y);
 
 		transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.Scale(lookPos.normalized, faceRange), Time.deltaTime * lookSpeed);
 

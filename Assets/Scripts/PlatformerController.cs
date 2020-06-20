@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -45,6 +46,9 @@ public class PlatformerController : MonoBehaviour {
 
 	// animations
 	public Animator anim;
+
+    public Face face;
+    public List<Transform> keepUnMirrored;
 
 	// ###############################################################
 
@@ -183,13 +187,16 @@ public class PlatformerController : MonoBehaviour {
 				float dir = Mathf.Sign (inputDirection);
 				spriteObject.localScale = new Vector2 (dir, 1);
 
+                face.flipped = dir < 0;
+                keepUnMirrored.ForEach(item => item.localScale = new Vector2(dir, 1));
+
 //				Transform sprite = transform.Find("Character");
 //				Vector3 scl = sprite.localScale;
 //				scl.x = dir;
 //				sprite.localScale = scl;
 
-//				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 90f - dir * 90f, transform.localEulerAngles.z);
-			}
+                //				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 90f - dir * 90f, transform.localEulerAngles.z);
+            }
 				
 			bool wallHug = false; 
 

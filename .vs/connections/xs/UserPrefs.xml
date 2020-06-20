@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Face.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlatformerController.cs">
     <Files>
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
-      <File FileName="Assets/Anima2D/Scripts/Editor/OnionSkin/OnionLayerManager.cs" Line="214" Column="1" />
-      <File FileName="Assets/Scripts/PlatformerController.cs" Line="293" Column="60" />
-      <File FileName="Assets/Scripts/Face.cs" Line="183" Column="29" />
+      <File FileName="Assets/Scripts/PlatformerController.cs" Line="190" Column="45" />
+      <File FileName="Assets/Scripts/Face.cs" Line="175" Column="63" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,7 +18,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="Face.cs" selected="True" />
+                <Node name="PlatformerController.cs" selected="True" />
               </Node>
             </Node>
           </Node>
