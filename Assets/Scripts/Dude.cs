@@ -93,6 +93,7 @@ public class Dude : MonoBehaviour
                     inputs.appearer.Hide();
                     pulling = false;
                     pc.canControl = true;
+                    pc.body.bodyType = RigidbodyType2D.Dynamic;
                     veggie = null;
                 }
             }
@@ -236,7 +237,7 @@ public class Dude : MonoBehaviour
             }
             else if(veg != veggie)
             {
-                bubble.ShowMessage("I can only carry one (veggie) at a time but I could still peek at it with  <sprite=3>  or  <sprite=2>.");
+                bubble.ShowMessage("I can only carry one (veggie) at a time but I could still peek at it with\n  <sprite=3>  or  <sprite=2>.");
                 peekVeggie = veg;
             }
         }
