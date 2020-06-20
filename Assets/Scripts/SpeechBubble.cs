@@ -61,7 +61,7 @@ public class SpeechBubble : MonoBehaviour {
 
         if (canSkip)
         {
-            if (InputMagic.Instance.GetButtonDown(InputMagic.A) || InputMagic.Instance.GetButtonDown(InputMagic.X))
+            if (InputMagic.Instance.GetButtonUp(InputMagic.A) || InputMagic.Instance.GetButtonUp(InputMagic.X))
             {
                 if (!done)
                 {
@@ -69,14 +69,7 @@ public class SpeechBubble : MonoBehaviour {
                 }
                 else
                 {
-                    if (messageQue.Count > 0)
-                    {
-                        PopMessage();
-                    }
-                    else
-                    {
-                        Hide();
-                    }
+                    CheckQueuedMessages();
                 }
             }
         }
@@ -105,7 +98,7 @@ public class SpeechBubble : MonoBehaviour {
 
             if(letter == "<")
             {
-                messagePos = message.IndexOf(">", messagePos, System.StringComparison.Ordinal);
+                messagePos = message.IndexOf(">", messagePos, System.StringComparison.Ordinal) + 1;
                 msg = message.Substring(0, messagePos);
             }
 
@@ -175,9 +168,10 @@ public class SpeechBubble : MonoBehaviour {
 	}
 
 	public void CheckQueuedMessages() {
-		if (messageQue.Count > 0 && !shown) {
+		if (messageQue.Count > 0) {
 			PopMessage ();
-		} else
+		}
+        else
         {
             Hide();
         }
@@ -191,7 +185,9 @@ public class SpeechBubble : MonoBehaviour {
 
 	private void ShowText() {
 		messagePos = 0;
-	}
+        CancelInvoke("DisableAfterDelay");
+        gameObject.SetActive(true);
+    }
 
 	public void HideAfter (float delay) {
 		Invoke ("Hide", delay);
@@ -203,6 +199,7 @@ public class SpeechBubble : MonoBehaviour {
         messagePos = -1;
 
         Tweener.Instance.ScaleTo(transform, hiddenSize, 0.3f, 0f, TweenEasings.QuadraticEaseOut);
+        Invoke("DisableAfterDelay", 0.3f);
 
         //AudioManager.Instance.Highpass (false);
 
@@ -212,6 +209,11 @@ public class SpeechBubble : MonoBehaviour {
         shown = false;
 		textArea.text = "";
 	}
+
+    void DisableAfterDelay()
+    {
+        gameObject.SetActive(false);
+    }
 
 	public bool IsShown() {
 		return shown;

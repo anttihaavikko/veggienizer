@@ -7,6 +7,8 @@ public class Area : MonoBehaviour
 {
     public GameObject cam;
     public bool showMessageOnVisited;
+
+    [TextArea]
     public List<string> messages;
 
     private bool visited;

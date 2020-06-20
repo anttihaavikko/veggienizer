@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpeechBubble.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/InputMagic.cs">
     <Files>
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
-      <File FileName="Assets/Scripts/PlatformerController.cs" Line="168" Column="5" />
+      <File FileName="Assets/Scripts/PlatformerController.cs" Line="160" Column="59" />
       <File FileName="Assets/Scripts/Face.cs" Line="188" Column="67" />
-      <File FileName="Assets/Scripts/Dude.cs" Line="148" Column="74" />
+      <File FileName="Assets/Scripts/Dude.cs" Line="26" Column="1" />
       <File FileName="Assets/Scripts/InputDisplay.cs" Line="49" Column="10" />
       <File FileName="Assets/Scripts/Veggie.cs" Line="24" Column="1" />
       <File FileName="Assets/Scripts/Appearer.cs" Line="27" Column="6" />
-      <File FileName="Assets/Scripts/Area.cs" Line="15" Column="6" />
-      <File FileName="Assets/Scripts/SpeechBubble.cs" Line="9" Column="13" />
+      <File FileName="Assets/Scripts/Area.cs" Line="11" Column="15" />
+      <File FileName="Assets/Scripts/SpeechBubble.cs" Line="102" Column="56" />
+      <File FileName="Assets/Scripts/InputMagic.cs" Line="548" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,7 +25,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="SpeechBubble.cs" selected="True" />
+                <Node name="InputMagic.cs" selected="True" />
               </Node>
             </Node>
           </Node>

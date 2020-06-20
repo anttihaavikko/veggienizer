@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Dude : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Dude : MonoBehaviour
     public InputDisplay inputs;
     public PlatformerController pc;
     public SpeechBubble bubble;
+    public TMP_Text scoreText, timeText;
 
     private float pullAmount;
     private Veggie veggie;
@@ -18,9 +20,51 @@ public class Dude : MonoBehaviour
     private bool carrying;
     private bool hasReset;
 
+    private int currentValue;
+    private float shownScore;
+    private int score;
+    private float timeLeft;
+
+    private void Start()
+    {
+        timeLeft = 60 * 12;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(Application.isEditor)
+        {
+            Time.timeScale = Input.GetKey(KeyCode.LeftShift) ? 2f : 1f;
+        }
+
+        if (veggie && pulling || carrying)
+        {
+            veggie.body.bodyType = RigidbodyType2D.Kinematic;
+            veggie.transform.position = veggiePosition.position;
+        }
+
+        shownScore = Mathf.MoveTowards(shownScore, score, Time.deltaTime * 10f);
+        scoreText.text = Mathf.FloorToInt(shownScore).ToString();
+
+        if (bubble.IsShown())
+            return;
+
+        timeLeft -= Time.deltaTime;
+
+        if(timeLeft > 0)
+        {
+            var t = System.TimeSpan.FromSeconds(timeLeft);
+            timeText.text = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
+        }
+        else
+        {
+            // TODO: end
+            pc.canControl = false;
+            pc.body.velocity = Vector2.zero;
+            anim.SetFloat("speed", 0);
+        }
+
         var button = InputMagic.Instance.GetButtonDown(InputMagic.X);
 
         if (veggie && button && !carrying)
@@ -36,6 +80,22 @@ public class Dude : MonoBehaviour
             }
 
             pulling = true;
+
+            if (veggie.IsEx())
+            {
+                if(veggie.CanPick())
+                {
+                    pullAmount = 1f;
+                }
+                else
+                {
+                    bubble.ShowMessage("Nope...");
+                    inputs.appearer.Hide();
+                    pulling = false;
+                    pc.canControl = true;
+                    veggie = null;
+                }
+            }
         }
 
         if (veggie && button && carrying)
@@ -48,6 +108,11 @@ public class Dude : MonoBehaviour
         {
             if(pullAmount >= 1f)
             {
+                var text = veggie.GetIntro();
+                bubble.ShowMessage(text);
+                currentValue = veggie.GetValue();
+                score = currentValue;
+
                 pullAmount = 0;
                 anim.SetTrigger("pulled");
                 anim.SetBool("pulling", false);
@@ -88,12 +153,6 @@ public class Dude : MonoBehaviour
             }
         }
 
-        if(veggie && pulling || carrying)
-        {
-            veggie.body.bodyType = RigidbodyType2D.Kinematic;
-            veggie.transform.position = veggiePosition.position;
-        }
-
         if(Application.isEditor && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadSceneAsync("Main");
@@ -102,6 +161,7 @@ public class Dude : MonoBehaviour
 
     private void Drop()
     {
+        score = 0;
         carrying = false;
         veggie.body.bodyType = RigidbodyType2D.Dynamic;
         anim.SetBool("carrying", false);
@@ -146,18 +206,23 @@ public class Dude : MonoBehaviour
 
         if (collision.gameObject.tag == "Veggie Activation")
         {
-            if(Random.value < 0.1f)
+            if(Random.value < 0.1f + currentValue * 0.01f)
             {
-                collision.gameObject.GetComponentInParent<Veggie>().Appear();
+                collision.gameObject.GetComponentInParent<Veggie>().Appear(currentValue);
             }
         }
 
-        if (veggie)
-            return;
-
         if(collision.gameObject.tag == "Veggie Pull")
         {
-            veggie = collision.gameObject.GetComponentInParent<Veggie>();
+            var veg = collision.gameObject.GetComponentInParent<Veggie>();
+
+            if(veg.IsEx())
+            {
+                bubble.ShowMessage(veg.GetExInfo());
+            }
+
+            if (!veggie)
+                veggie = veg;
         }
     }
 

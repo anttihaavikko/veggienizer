@@ -25,7 +25,9 @@ public class Appearer : MonoBehaviour
 
     public void Show()
     {
-        if(!silent)
+        gameObject.SetActive(true);
+
+        if (!silent)
         {
             //AudioManager.Instance.PlayEffectAt(16, Vector3.zero, 0.336f);
             //AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.329f);
@@ -48,7 +50,13 @@ public class Appearer : MonoBehaviour
         }
 
 		Tweener.Instance.ScaleTo(transform, Vector3.zero, 0.2f, 0f, TweenEasings.QuadraticEaseOut);
+        Invoke("DisableAfterDelay", 0.2f);
 	}
+
+    void DisableAfterDelay()
+    {
+        gameObject.SetActive(false);
+    }
 
     public void HideWithDelay()
 	{

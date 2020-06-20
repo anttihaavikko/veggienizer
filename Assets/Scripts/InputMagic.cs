@@ -484,13 +484,13 @@ public class InputMagic : MonoBehaviour {
 			return TryToGetKeyDown (padA) || Input.GetKeyDown(KeyCode.Space);
 		}
 		if (button == InputMagic.B) {
-			return TryToGetKeyDown (padB) || Input.GetKeyDown(KeyCode.X);
+			return TryToGetKeyDown (padB) || Input.GetKeyDown(KeyCode.C);
 		}
 		if (button == InputMagic.X) {
-			return TryToGetKeyDown (padX) || Input.GetKeyDown(KeyCode.Z);
+			return TryToGetKeyDown (padX) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.E);
 		}
 		if (button == InputMagic.Y) {
-			return TryToGetKeyDown (padY) || Input.GetKeyDown(KeyCode.C);
+			return TryToGetKeyDown (padY) || Input.GetKeyDown(KeyCode.V);
 		}
 		if (button == InputMagic.START) {
 			return TryToGetKeyDown (padStart);
@@ -508,13 +508,13 @@ public class InputMagic : MonoBehaviour {
 			return TryToGetKey (padA) || Input.GetKey(KeyCode.Space);
 		}
 		if (button == InputMagic.B) {
-			return TryToGetKey (padB) || Input.GetKey(KeyCode.X);
+			return TryToGetKey (padB) || Input.GetKey(KeyCode.C);
 		}
 		if (button == InputMagic.X) {
-			return TryToGetKey (padX) || Input.GetKey(KeyCode.Z);
+			return TryToGetKey (padX) || Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.E);
 		}
 		if (button == InputMagic.Y) {
-			return TryToGetKey (padY) || Input.GetKey(KeyCode.C);
+			return TryToGetKey (padY) || Input.GetKey(KeyCode.V);
 		}
 		if (button == InputMagic.START) {
 			return TryToGetKey (padStart);
@@ -532,13 +532,13 @@ public class InputMagic : MonoBehaviour {
 			return TryToGetKeyUp (padA) || Input.GetKeyUp(KeyCode.Space);
 		}
 		if (button == InputMagic.B) {
-			return TryToGetKeyUp (padB) || Input.GetKeyUp(KeyCode.X);
+			return TryToGetKeyUp (padB) || Input.GetKeyUp(KeyCode.C);
 		}
 		if (button == InputMagic.X) {
-			return TryToGetKeyUp (padX) || Input.GetKeyUp(KeyCode.Z);
+			return TryToGetKeyUp (padX) || Input.GetKeyUp(KeyCode.X) || Input.GetKeyUp(KeyCode.E);
 		}
 		if (button == InputMagic.Y) {
-			return TryToGetKeyUp (padY) || Input.GetKeyUp(KeyCode.C);
+			return TryToGetKeyUp (padY) || Input.GetKeyUp(KeyCode.V);
 		}
 		if (button == InputMagic.START) {
 			return TryToGetKeyUp (padStart);
