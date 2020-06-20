@@ -27,6 +27,7 @@ public class InputDisplay : MonoBehaviour
             if(active)
             {
                 icons[i].transform.rotation = Quaternion.Euler(0, 0, 90 * directions[i]);
+                icons[i].color = Color.white;
             }
         }
     }

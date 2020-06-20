@@ -36,6 +36,9 @@ public class Dude : MonoBehaviour
             pulling = true;
         }
 
+        if (veggie && Input.GetKeyDown(KeyCode.Q) && carrying)
+            Drop();
+
         anim.SetBool("pulling", pulling);
         anim.SetFloat("pull", pullAmount);
 
@@ -49,6 +52,10 @@ public class Dude : MonoBehaviour
                 pulling = false;
                 carrying = true;
                 anim.SetBool("carrying", true);
+
+                veggie.body.velocity = Vector2.zero;
+                veggie.body.angularVelocity = 0;
+                veggie.transform.rotation = Quaternion.Euler(Vector3.zero);
 
                 pc.canControl = true;
             }
@@ -78,6 +85,7 @@ public class Dude : MonoBehaviour
 
         if(veggie && pulling || carrying)
         {
+            veggie.body.bodyType = RigidbodyType2D.Kinematic;
             veggie.transform.position = veggiePosition.position;
         }
 
@@ -85,6 +93,15 @@ public class Dude : MonoBehaviour
         {
             SceneManager.LoadSceneAsync("Main");
         }
+    }
+
+    private void Drop()
+    {
+        carrying = false;
+        veggie.body.bodyType = RigidbodyType2D.Dynamic;
+        anim.SetBool("carrying", false);
+        veggie.body.velocity = pc.body.velocity * 1.1f;
+        veggie = null;
     }
 
     private void SendInput(int dir)
@@ -108,6 +125,9 @@ public class Dude : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (veggie)
+            return;
+
         if(collision.gameObject.tag == "Veggie Pull")
         {
             veggie = collision.gameObject.GetComponentInParent<Veggie>();
@@ -116,7 +136,7 @@ public class Dude : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Veggie Pull")
+        if (collision.gameObject == veggie)
         {
             veggie = null;
         }
