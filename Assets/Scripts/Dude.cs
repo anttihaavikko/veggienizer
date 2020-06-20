@@ -47,9 +47,6 @@ public class Dude : MonoBehaviour
         shownScore = Mathf.MoveTowards(shownScore, score, Time.deltaTime * 10f);
         scoreText.text = Mathf.FloorToInt(shownScore).ToString();
 
-        if (bubble.IsShown())
-            return;
-
         timeLeft -= Time.deltaTime;
 
         if(timeLeft > 0)
@@ -64,6 +61,9 @@ public class Dude : MonoBehaviour
             pc.body.velocity = Vector2.zero;
             anim.SetFloat("speed", 0);
         }
+
+        if (bubble.IsShown())
+            return;
 
         var button = InputMagic.Instance.GetButtonDown(InputMagic.X);
 
@@ -231,12 +231,12 @@ public class Dude : MonoBehaviour
 
             if (!veggie)
             {
-                bubble.ShowMessage("Looks like there is some (vegetable) here. I could pick it up with <sprite=5>.");
+                bubble.ShowMessage("Looks like there is some (vegetable) here. I could pick it up with  <sprite=3>  or  <sprite=2>.");
                 veggie = veg;
             }
             else if(veg != veggie)
             {
-                bubble.ShowMessage("I can only carry one (veggie) at a time but I could still peek at it with <sprite=5>.");
+                bubble.ShowMessage("I can only carry one (veggie) at a time but I could still peek at it with  <sprite=3>  or  <sprite=2>.");
                 peekVeggie = veg;
             }
         }
