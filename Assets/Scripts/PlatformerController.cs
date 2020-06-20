@@ -29,6 +29,7 @@ public class PlatformerController : MonoBehaviour {
     private int jumpFrames = 0;
     private int allowedJumpFrames = 5;
 	public Transform feetPoint;
+    private bool canJump = true;
 
 	// flags
 	public bool canControl = true;
@@ -61,9 +62,14 @@ public class PlatformerController : MonoBehaviour {
     {
         body.gravityScale = gravity * 1.5f;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    void EnableJump()
+    {
+        canJump = true;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		bool wasGrounded = grounded;
         bool leftInAir = false;
         bool rightInAir = false;
@@ -157,8 +163,11 @@ public class PlatformerController : MonoBehaviour {
             }
 
 			// jump
-			if ((grounded || (canDoubleJump && !doubleJumped)) && (InputMagic.Instance.GetButton(InputMagic.A) || jumpBufferedFor > 0)) {
+			if (canJump && (grounded || (canDoubleJump && !doubleJumped)) && (InputMagic.Instance.GetButton(InputMagic.A) || jumpBufferedFor > 0)) {
 
+                canJump = false;
+                CancelInvoke("EnableJump");
+                Invoke("EnableJump", 0.5f);
                 Jump();
 
 			} else if (canControl && InputMagic.Instance.GetButton(InputMagic.A)) {
