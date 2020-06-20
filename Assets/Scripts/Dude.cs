@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class Dude : MonoBehaviour
     public Transform veggiePosition;
     public InputDisplay inputs;
     public PlatformerController pc;
+    public SpeechBubble bubble;
 
     private float pullAmount;
     private Veggie veggie;
@@ -19,7 +21,9 @@ public class Dude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (veggie && Input.GetKeyDown(KeyCode.Q) && !carrying)
+        var button = InputMagic.Instance.GetButtonDown(InputMagic.X);
+
+        if (veggie && button && !carrying)
         {
             pc.body.velocity = Vector2.zero;
             pc.body.bodyType = RigidbodyType2D.Kinematic;
@@ -34,7 +38,7 @@ public class Dude : MonoBehaviour
             pulling = true;
         }
 
-        if (veggie && Input.GetKeyDown(KeyCode.Q) && carrying)
+        if (veggie && button && carrying)
             Drop();
 
         anim.SetBool("pulling", pulling);
@@ -127,6 +131,27 @@ public class Dude : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Area")
+        {
+            var area = collision.gameObject.GetComponentInParent<Area>();
+
+            if(area.CanShow())
+            {
+                area.messages.ForEach(bubble.QueMessage);
+                bubble.CheckQueuedMessages();
+            }
+
+            area.Toggle(true);
+        }
+
+        if (collision.gameObject.tag == "Veggie Activation")
+        {
+            if(Random.value < 0.1f)
+            {
+                collision.gameObject.GetComponentInParent<Veggie>().Appear();
+            }
+        }
+
         if (veggie)
             return;
 
@@ -141,6 +166,11 @@ public class Dude : MonoBehaviour
         if (collision.gameObject == veggie)
         {
             veggie = null;
+        }
+
+        if (collision.gameObject.tag == "Area")
+        {
+            collision.gameObject.GetComponentInParent<Area>().Toggle(false);
         }
     }
 }

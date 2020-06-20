@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Veggie Pull
+  - Veggie Activation
+  - Area
   layers:
   - Default
   - TransparentFX
