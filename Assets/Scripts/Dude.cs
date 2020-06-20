@@ -57,6 +57,8 @@ public class Dude : MonoBehaviour
                 veggie.body.angularVelocity = 0;
                 veggie.transform.rotation = Quaternion.Euler(Vector3.zero);
 
+                inputs.appearer.HideWithDelay();
+
                 pc.canControl = true;
             }
 

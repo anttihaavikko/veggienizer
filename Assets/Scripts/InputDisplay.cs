@@ -7,6 +7,7 @@ public class InputDisplay : MonoBehaviour
 {
     public List<Image> icons;
     public Color okColor, failColor;
+    public Appearer appearer;
 
     private int position;
     private List<int> directions;
@@ -30,6 +31,8 @@ public class InputDisplay : MonoBehaviour
                 icons[i].color = Color.white;
             }
         }
+
+        appearer.Show();
     }
 
     public float Input(int direction)
@@ -45,6 +48,7 @@ public class InputDisplay : MonoBehaviour
         else
         {
             cur.color = failColor;
+            appearer.HideWithDelay();
             return -1f;
         }
     }
