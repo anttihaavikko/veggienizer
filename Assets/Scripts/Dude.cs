@@ -22,16 +22,14 @@ public class Dude : MonoBehaviour
         if (veggie && Input.GetKeyDown(KeyCode.Q) && !carrying)
         {
             pc.body.velocity = Vector2.zero;
+            pc.body.bodyType = RigidbodyType2D.Kinematic;
             pc.canControl = false;
 
-            if (pulling)
-                pullAmount += 0.25f;
-            else
+            if (!pulling)
             {
                 inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
                 inputs.Initialize(Random.Range(3, 10));
             }
-                
 
             pulling = true;
         }
@@ -52,6 +50,7 @@ public class Dude : MonoBehaviour
                 pulling = false;
                 carrying = true;
                 anim.SetBool("carrying", true);
+                pc.body.bodyType = RigidbodyType2D.Dynamic;
 
                 veggie.body.velocity = Vector2.zero;
                 veggie.body.angularVelocity = 0;
@@ -115,6 +114,7 @@ public class Dude : MonoBehaviour
         {
             veggie = null;
             pulling = false;
+            pc.body.bodyType = RigidbodyType2D.Dynamic;
             Invoke("ReturnControl", 0.3f);
         }
         hasReset = false;
