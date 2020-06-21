@@ -89,6 +89,9 @@ public class Dude : MonoBehaviour
 
         DoPull();
 
+        anim.SetBool("pulling", pulling);
+        anim.SetFloat("pull", pullAmount);
+
         if (bubble.IsShown() || vegBubble.IsShown())
             return;
 
@@ -119,6 +122,9 @@ public class Dude : MonoBehaviour
                 }
             }
 
+            if (veggie && veggie.HasFailed())
+                autoPull = true;
+
             if (!autoPull && veggie)
             {
                 inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
@@ -146,18 +152,26 @@ public class Dude : MonoBehaviour
 
                 if (!veggie.IsEx())
                 {
-                    var isFriend = false;
-                    foreach (var v in exes)
+                    var failed = false;
+
+                    if(veggie.HasFailed())
                     {
-                        if (Random.value < 0.05f)
+                        failed = true;
+                    }
+                    else
+                    {
+                        foreach (var v in exes)
                         {
-                            isFriend = true;
-                            veggie.SetFriend(v);
-                            break;
+                            if (Random.value < 0.05f)
+                            {
+                                failed = true;
+                                veggie.SetFriend(v);
+                                break;
+                            }
                         }
                     }
 
-                    if (!isFriend)
+                    if (!failed)
                         bubble.ShowMessage(text);
                 }
                 else
@@ -189,6 +203,12 @@ public class Dude : MonoBehaviour
                 if (veggie.HasFriend())
                 {
                     veggie.DenyCauseFriend();
+                    Drop();
+                }
+
+                if(veggie.HasFailed())
+                {
+                    veggie.DenyCauseFail();
                     Drop();
                 }
             }
@@ -252,14 +272,19 @@ public class Dude : MonoBehaviour
     {
         var amount = inputs.Input(dir);
         if(amount >= 0)
+        {
             pullAmount = amount;
+        }
         else
         {
+            veggie.Fail();
+            veggie.DenyCauseFail();
             veggie = null;
             pulling = false;
             pc.body.bodyType = RigidbodyType2D.Dynamic;
             Invoke("ReturnControl", 0.3f);
         }
+
         hasReset = false;
     }
 

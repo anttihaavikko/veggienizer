@@ -20,6 +20,7 @@ public class Veggie : MonoBehaviour
     private bool mad;
 
     private int type;
+    private bool failed;
 
     private Veggie friend;
 
@@ -215,6 +216,28 @@ public class Veggie : MonoBehaviour
         Speak(text);
     }
 
+    public void DenyCauseFail()
+    {
+        times = 0;
+
+        var starts = new string[] {
+             "No way!",
+             "Get off me!",
+             "Hands off!",
+             "Oh hell no!"
+        };
+
+        var ends = new string[]
+        {
+            "You (missed) your chance.",
+            "I'm way out of your (league)!",
+            "Do I need a (restraining order)?"
+        };
+
+        var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
+        Speak(text);
+    }
+
     public void AllowEx()
     {
         var starts = new string[] {
@@ -254,5 +277,15 @@ public class Veggie : MonoBehaviour
     public bool HasFriend()
     {
         return friend != null;
+    }
+
+    public bool HasFailed()
+    {
+        return failed;
+    }
+
+    public void Fail()
+    {
+        failed = true;
     }
 }

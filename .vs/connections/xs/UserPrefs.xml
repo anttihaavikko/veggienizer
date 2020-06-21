@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StartView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioManager.cs">
     <Files>
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
-      <File FileName="Assets/Scripts/PlatformerController.cs" />
+      <File FileName="Assets/Scripts/PlatformerController.cs" Line="182" Column="20" />
       <File FileName="Assets/Scripts/Face.cs" />
-      <File FileName="Assets/Scripts/Dude.cs" />
-      <File FileName="Assets/Scripts/InputDisplay.cs" />
-      <File FileName="Assets/Scripts/Veggie.cs" />
+      <File FileName="Assets/Scripts/Dude.cs" Line="137" Column="1" />
+      <File FileName="Assets/Scripts/InputDisplay.cs" Line="35" Column="25" />
+      <File FileName="Assets/Scripts/Veggie.cs" Line="236" Column="1" />
       <File FileName="Assets/Scripts/Appearer.cs" />
-      <File FileName="Assets/Scripts/Area.cs" />
-      <File FileName="Assets/Scripts/SpeechBubble.cs" />
-      <File FileName="Assets/Scripts/InputMagic.cs" />
-      <File FileName="Assets/Scripts/StartView.cs" Line="9" Column="26" />
+      <File FileName="Assets/Scripts/Area.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpeechBubble.cs" Line="119" Column="99" />
+      <File FileName="Assets/Scripts/InputMagic.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/StartView.cs" Line="52" Column="52" />
+      <File FileName="Assets/Scripts/AudioManager.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,7 +27,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="StartView.cs" selected="True" />
+                <Node name="AudioManager.cs" selected="True" />
               </Node>
             </Node>
           </Node>
