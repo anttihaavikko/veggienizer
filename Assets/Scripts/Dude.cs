@@ -13,6 +13,7 @@ public class Dude : MonoBehaviour
     public PlatformerController pc;
     public SpeechBubble bubble, vegBubble;
     public TMP_Text scoreText, timeText;
+    public Appearer gameOverDisplay;
 
     private float pullAmount;
     private Veggie veggie, peekVeggie;
@@ -24,6 +25,8 @@ public class Dude : MonoBehaviour
     private float shownScore;
     private int score;
     private float timeLeft;
+    private bool ended;
+    private bool canRestart;
 
     private void Start()
     {
@@ -33,7 +36,12 @@ public class Dude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Application.isEditor)
+        if (Application.isEditor && Input.GetKeyDown(KeyCode.R) || canRestart && Input.anyKeyDown)
+        {
+            SceneChanger.Instance.ChangeScene("Main");
+        }
+
+        if (Application.isEditor)
         {
             Time.timeScale = Input.GetKey(KeyCode.LeftShift) ? 2f : 1f;
         }
@@ -56,10 +64,10 @@ public class Dude : MonoBehaviour
         }
         else
         {
-            // TODO: end
-            pc.canControl = false;
-            pc.body.velocity = Vector2.zero;
-            anim.SetFloat("speed", 0);
+            if(!ended)
+            {
+                DoEnd();
+            }
         }
 
         if (bubble.IsShown() || vegBubble.IsShown())
@@ -164,11 +172,25 @@ public class Dude : MonoBehaviour
                     SendInput(1);
             }
         }
+    }
 
-        if(Application.isEditor && Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadSceneAsync("Main");
-        }
+    void DoEnd()
+    {
+        ended = true;
+        pc.canControl = false;
+        pc.body.velocity = new Vector2(0, pc.body.velocity.y);
+        anim.SetFloat("speed", 0);
+
+        gameOverDisplay.ShowWithText("You scored <color=#99C24D>" + score + "</color>", 1f);
+
+        ScoreManager.Instance.SubmitScore(PlayerPrefs.GetString("PlayerName"), score, score);
+
+        Invoke("EnableRestart", 2f);
+    }
+
+    void EnableRestart()
+    {
+        canRestart = true;
     }
 
     private void Drop()
