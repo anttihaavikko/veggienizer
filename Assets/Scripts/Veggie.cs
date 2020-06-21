@@ -208,7 +208,7 @@ public class Veggie : MonoBehaviour
             "I was here (waiting) for you."
         };
 
-        var text = starts.OrderBy(s => Random.value).First() + " " + ends.OrderBy(s => Random.value).First();
+        var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
         Speak(text);
     }
 
