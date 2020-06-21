@@ -11,7 +11,7 @@ public class Dude : MonoBehaviour
     public Transform veggiePosition;
     public InputDisplay inputs;
     public PlatformerController pc;
-    public SpeechBubble bubble;
+    public SpeechBubble bubble, vegBubble;
     public TMP_Text scoreText, timeText;
 
     private float pullAmount;
@@ -86,10 +86,11 @@ public class Dude : MonoBehaviour
                 if(veggie.CanPick())
                 {
                     pullAmount = 1f;
+                    veggie.AllowEx();
                 }
                 else
                 {
-                    bubble.ShowMessage("Nope...");
+                    veggie.DenyEx();
                     inputs.appearer.Hide();
                     pulling = false;
                     pc.canControl = true;
@@ -113,7 +114,14 @@ public class Dude : MonoBehaviour
             if(pullAmount >= 1f)
             {
                 var text = veggie.GetIntro();
-                bubble.ShowMessage(text);
+
+                if (!veggie.IsEx())
+                    bubble.ShowMessage(text);
+                else
+                    veggie.AllowEx();
+
+                veggie.Increment();
+
                 currentValue = veggie.GetValue();
                 score = currentValue;
 
@@ -212,7 +220,9 @@ public class Dude : MonoBehaviour
         {
             if(Random.value < 0.1f + currentValue * 0.01f)
             {
-                collision.gameObject.GetComponentInParent<Veggie>().Appear(currentValue);
+                var v = collision.gameObject.GetComponentInParent<Veggie>();
+                v.Appear(currentValue);
+                v.bubble = vegBubble;
             }
         }
 

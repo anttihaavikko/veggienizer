@@ -8,6 +8,7 @@ public class SpeechBubble : MonoBehaviour {
 
 	public TMP_Text textArea;
     public Vector3 hiddenSize;
+    public Transform followTarget;
 
     private bool shown;
 	private string message = "";
@@ -58,6 +59,11 @@ public class SpeechBubble : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if(shown && followTarget)
+        {
+            transform.position = followTarget.position + Vector3.right;
+        }
 
         if (canSkip)
         {

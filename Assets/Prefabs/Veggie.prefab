@@ -2486,6 +2486,8 @@ MonoBehaviour:
   - {fileID: 77898271863441127}
   - {fileID: 887576647853467205}
   - {fileID: 8886523873055182864}
+  bubble: {fileID: 0}
+  speechPoint: {fileID: 0}
 --- !u!50 &4376871162524663524
 Rigidbody2D:
   serializedVersion: 4

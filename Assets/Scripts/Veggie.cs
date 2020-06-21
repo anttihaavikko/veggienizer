@@ -12,6 +12,8 @@ public class Veggie : MonoBehaviour
     public SpriteRenderer sprite;
     public List<Sprite> sprites;
     public List<GameObject> types;
+    public SpeechBubble bubble;
+    public Transform speechPoint;
 
     private int value;
     private int times;
@@ -44,7 +46,6 @@ public class Veggie : MonoBehaviour
 
     public string GetIntro()
     {
-        times++;
         switch(type)
         {
             // yam
@@ -154,6 +155,65 @@ public class Veggie : MonoBehaviour
 
     public string GetExInfo()
     {
-         return "This (carrot) was worth (" + value + ").";
+         return "This (" + GetName() +") was worth (" + value + ").";
+    }
+
+    public void Speak(string message)
+    {
+        bubble.followTarget = transform;
+        bubble.ShowMessage(message);
+    }
+
+    public void DenyEx()
+    {
+        var starts = new string[] {
+             "No way!",
+             "Go (screw) yourself!",
+             "Eww, (no)!",
+             "What! Are you (kidding)?",
+             "Ew! (Just ew)!"
+        };
+
+        var ends = new string[]
+        {
+            "Not after how (you've treated) me.",
+            "Not after all we've (been through).",
+            "You treated me like (garbage).",
+            "You treated me like a (day old produce)."
+        };
+
+        var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
+        Speak(text);
+    }
+
+    public void AllowEx()
+    {
+        var starts = new string[] {
+             "Yes!",
+             "Of course (dear)!",
+             "I was (here waiting) all this time!",
+             "I knew you'd be back.",
+             "Yes dear!",
+             "Yes honey!",
+             "Oui (mon cher)!",
+             "Always (my love)!"
+        };
+
+        var ends = new string[]
+        {
+            "Never (leave me) again.",
+            "I still have (feelings) for you.",
+            "Lets give it (another try)...",
+            "(Please) never leave me again...",
+            "I was here (waiting) for you."
+        };
+
+        var text = starts.OrderBy(s => Random.value).First() + " " + ends.OrderBy(s => Random.value).First();
+        Speak(text);
+    }
+
+    public void Increment()
+    {
+        times++;
     }
 }
