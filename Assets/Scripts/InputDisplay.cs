@@ -65,11 +65,15 @@ public class InputDisplay : MonoBehaviour
 
         if (directions[position] == direction && cur > 0)
         {
+            AudioManager.Instance.PlayEffectAt(32, transform.position, 0.4f);
+            AudioManager.Instance.PlayEffectAt(34, transform.position, 1f);
+
             c.color = okColor;
             position++;
 
             if(position == directions.Count)
             {
+                AudioManager.Instance.PlayEffectAt(50, transform.position, 7f);
                 isOn = false;
             }
 
@@ -77,6 +81,10 @@ public class InputDisplay : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.PlayEffectAt(32, transform.position, 1f);
+            AudioManager.Instance.PlayEffectAt(55, transform.position, 1f);
+            AudioManager.Instance.PlayEffectAt(41, transform.position, 1f);
+
             c.color = failColor;
             appearer.HideWithDelay();
             bar.HideWithDelay();

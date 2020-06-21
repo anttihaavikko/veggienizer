@@ -286,11 +286,12 @@ public class PlatformerController : MonoBehaviour {
 
         body.AddForce(Vector2.up * jump * Time.deltaTime, ForceMode2D.Impulse);
 
-        //AudioManager.Instance.PlayEffectAt(7, feetPoint.position, 1.2571f);
-        //AudioManager.Instance.PlayEffectAt(6, feetPoint.position, 0.194f);
-        //AudioManager.Instance.PlayEffectAt(5, feetPoint.position, 0.102f);
-        //AudioManager.Instance.PlayEffectAt(10, feetPoint.position, 0.507f);
-        //AudioManager.Instance.PlayEffectAt(Random.Range(18, 24), body.transform.position, 7f);
+        var vol = 0.7f;
+        AudioManager.Instance.PlayEffectAt(42, feetPoint.position, 1f * vol);
+        AudioManager.Instance.PlayEffectAt(44, feetPoint.position, 1f * vol);
+        AudioManager.Instance.PlayEffectAt(45, feetPoint.position, 0.73f * vol);
+        AudioManager.Instance.PlayEffectAt(54, feetPoint.position, 0.541f * vol);
+        AudioManager.Instance.PlayEffectAt(55, feetPoint.position, 0.345f * vol);
 
 
         jumped = true;
@@ -335,10 +336,12 @@ public class PlatformerController : MonoBehaviour {
 
 	private void Land() {
 
-        //AudioManager.Instance.PlayEffectAt(1, feetPoint.position, 0.543f);
-        //AudioManager.Instance.PlayEffectAt(2, feetPoint.position, 0.121f);
-        //AudioManager.Instance.PlayEffectAt(4, feetPoint.position, 0.437f);
-        //AudioManager.Instance.PlayEffectAt(Random.Range(18, 24), body.transform.position, 7f);
+        var vol = 0.5f;
+        AudioManager.Instance.PlayEffectAt(31, feetPoint.position, 0.793f * vol);
+        AudioManager.Instance.PlayEffectAt(32, feetPoint.position, 0.147f * vol);
+        AudioManager.Instance.PlayEffectAt(33, feetPoint.position, 0.362f * vol);
+        AudioManager.Instance.PlayEffectAt(40, feetPoint.position, 1.414f * vol);
+        AudioManager.Instance.PlayEffectAt(45, feetPoint.position, 0.483f * vol);
 
         jumped = false;
 
@@ -351,9 +354,6 @@ public class PlatformerController : MonoBehaviour {
 		//AudioManager.Instance.PlayEffectAt (1, transform.position, 0.5f);
 
 		//EffectManager.Instance.AddEffect(1, feetPoint.position);
-
-		//AudioManager.Instance.PlayEffectAt(26, transform.position, 0.3f);
-		//AudioManager.Instance.PlayEffectAt(35, transform.position, 0.5f);
 
 		// animation
 		if (anim) {

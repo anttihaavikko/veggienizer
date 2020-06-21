@@ -212,6 +212,10 @@ public class Dude : MonoBehaviour
                     veggie.DenyCauseFail();
                     Drop();
                 }
+
+                AudioManager.Instance.PlayEffectAt(45, veggie.transform.position, 0.922f);
+                AudioManager.Instance.PlayEffectAt(47, veggie.transform.position, 1.405f);
+                AudioManager.Instance.PlayEffectAt(53, veggie.transform.position, 1.329f);
             }
 
             float inputX = InputMagic.Instance.GetAxis(InputMagic.STICK_OR_DPAD_X);
