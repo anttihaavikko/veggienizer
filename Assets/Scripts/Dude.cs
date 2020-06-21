@@ -62,7 +62,7 @@ public class Dude : MonoBehaviour
             anim.SetFloat("speed", 0);
         }
 
-        if (bubble.IsShown())
+        if (bubble.IsShown() || vegBubble.IsShown())
             return;
 
         var button = InputMagic.Instance.GetButtonDown(InputMagic.X);

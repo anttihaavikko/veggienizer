@@ -1,16 +1,17 @@
 ﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Veggie.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StartView.cs">
     <Files>
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
       <File FileName="Assets/Scripts/PlatformerController.cs" />
       <File FileName="Assets/Scripts/Face.cs" />
       <File FileName="Assets/Scripts/Dude.cs" />
       <File FileName="Assets/Scripts/InputDisplay.cs" />
-      <File FileName="Assets/Scripts/Veggie.cs" Line="10" Column="33" />
+      <File FileName="Assets/Scripts/Veggie.cs" />
       <File FileName="Assets/Scripts/Appearer.cs" />
       <File FileName="Assets/Scripts/Area.cs" />
       <File FileName="Assets/Scripts/SpeechBubble.cs" />
-      <File FileName="Assets/Scripts/InputMagic.cs" Line="548" Column="4" />
+      <File FileName="Assets/Scripts/InputMagic.cs" />
+      <File FileName="Assets/Scripts/StartView.cs" Line="9" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,7 +26,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="Veggie.cs" selected="True" />
+                <Node name="StartView.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -35,7 +36,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="361ad040-db69-4158-8891-b0d6bf4c0445" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="54910829-b36e-4811-ba78-3036b48a4d1a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
