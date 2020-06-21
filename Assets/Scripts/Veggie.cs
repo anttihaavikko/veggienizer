@@ -288,4 +288,17 @@ public class Veggie : MonoBehaviour
     {
         failed = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.relativeVelocity.magnitude > 3f)
+        {
+            var vol = Mathf.Clamp(collision.relativeVelocity.magnitude * 0.1f, 0.1f, 0.8f);
+            AudioManager.Instance.PlayEffectAt(31, transform.position, 0.793f * vol);
+            AudioManager.Instance.PlayEffectAt(32, transform.position, 0.147f * vol);
+            AudioManager.Instance.PlayEffectAt(33, transform.position, 0.362f * vol);
+            AudioManager.Instance.PlayEffectAt(40, transform.position, 1.414f * vol);
+            AudioManager.Instance.PlayEffectAt(45, transform.position, 0.483f * vol);
+        }
+    }
 }
