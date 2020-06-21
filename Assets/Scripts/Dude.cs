@@ -104,6 +104,8 @@ public class Dude : MonoBehaviour
             pc.canControl = false;
             pulling = true;
 
+            EffectManager.Instance.AddEffectToParent(1, veggie.transform.position + Vector3.down * 0.5f, veggie.transform);
+
             if (veggie.IsEx())
             {
                 if(veggie.CanPick())
@@ -218,6 +220,12 @@ public class Dude : MonoBehaviour
                     AudioManager.Instance.PlayEffectAt(45, veggie.transform.position, 0.922f);
                     AudioManager.Instance.PlayEffectAt(47, veggie.transform.position, 1.405f);
                     AudioManager.Instance.PlayEffectAt(53, veggie.transform.position, 1.329f);
+                }
+
+                if(veggie)
+                {
+                    EffectManager.Instance.AddEffectToParent(1, veggie.transform.position + Vector3.down * 0.5f, veggie.transform);
+                    EffectManager.Instance.AddEffectToParent(4, veggie.transform.position + Vector3.down * 0.5f, veggie.transform);
                 }
             }
 

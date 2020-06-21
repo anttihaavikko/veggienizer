@@ -299,6 +299,8 @@ public class Veggie : MonoBehaviour
             AudioManager.Instance.PlayEffectAt(33, transform.position, 0.362f * vol);
             AudioManager.Instance.PlayEffectAt(40, transform.position, 1.414f * vol);
             AudioManager.Instance.PlayEffectAt(45, transform.position, 0.483f * vol);
+
+            EffectManager.Instance.AddEffect(0, collision.contacts[0].point);
         }
     }
 }

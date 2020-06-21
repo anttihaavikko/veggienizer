@@ -13,6 +13,7 @@ public class PlatformerController : MonoBehaviour {
 	public bool canDoubleJump = false;
 	public bool canWallJump = false;
 	public bool mirrorWhenTurning = true;
+    public ParticleSystem jumpTrail;
 
 	// physics
 	public Rigidbody2D body;
@@ -293,6 +294,7 @@ public class PlatformerController : MonoBehaviour {
         AudioManager.Instance.PlayEffectAt(54, feetPoint.position, 0.541f * vol);
         AudioManager.Instance.PlayEffectAt(55, feetPoint.position, 0.345f * vol);
 
+        jumpTrail.Play();
 
         jumped = true;
 
@@ -351,12 +353,13 @@ public class PlatformerController : MonoBehaviour {
 
 		body.gravityScale = gravity;
 
-		//AudioManager.Instance.PlayEffectAt (1, transform.position, 0.5f);
+        //AudioManager.Instance.PlayEffectAt (1, transform.position, 0.5f);
 
-		//EffectManager.Instance.AddEffect(1, feetPoint.position);
+        EffectManager.Instance.AddEffect(3, feetPoint.position);
+        EffectManager.Instance.AddEffect(0, feetPoint.position);
 
-		// animation
-		if (anim) {
+        // animation
+        if (anim) {
 			anim.speed = 1f;
 			anim.SetTrigger ("land");
             anim.SetTrigger("land2");
