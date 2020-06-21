@@ -128,7 +128,8 @@ public class Dude : MonoBehaviour
             if (!autoPull && veggie)
             {
                 inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
-                inputs.Initialize(Random.Range(3, 10));
+                var amount = Mathf.Clamp(Mathf.FloorToInt(veggie.GetValue() / 5f) + 3, 3, 9);
+                inputs.Initialize(amount);
             }
         }
 

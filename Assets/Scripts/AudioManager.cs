@@ -7,7 +7,7 @@ public class AudioManager : MyObjectPool<SoundEffect> {
 	public AudioSource curMusic;
 	public AudioSource[] musics;
 
-	public float volume = 0.5f;
+	public float volume = 1.5f;
 	private float musVolume = 0.5f;
 	public AudioClip[] effects;
 
@@ -104,7 +104,7 @@ public class AudioManager : MyObjectPool<SoundEffect> {
 	public void PlayEffectAt(AudioClip clip, Vector3 pos, float volume, bool pitchShift = true) {
 		SoundEffect se = Get();
         se.transform.position = pos;
-		se.Play (clip, volume, pitchShift);
+		se.Play (clip, volume * 2f, pitchShift);
 		se.transform.parent = transform;
 	}
 

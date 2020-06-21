@@ -51,6 +51,8 @@ public class PlatformerController : MonoBehaviour {
     public Face face;
     public List<Transform> keepUnMirrored;
 
+    private int stepSound, stepSoundDir = 1;
+
 	// ###############################################################
 
 	// Use this for initialization
@@ -271,7 +273,11 @@ public class PlatformerController : MonoBehaviour {
 	}
 
     private void FootStepSound() {
-        //AudioManager.Instance.PlayEffectAt(31, transform.position, 0.1f);
+        AudioManager.Instance.PlayEffectAt(20 + stepSound, groundChecks[0].position, 1f, false);
+        stepSound += stepSoundDir;
+
+        if (stepSound == 0 || stepSound == 8)
+            stepSoundDir = -stepSoundDir;
     }
 
     private void Jump()

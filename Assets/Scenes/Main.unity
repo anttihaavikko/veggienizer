@@ -7880,15 +7880,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d0a21173f58fc4c27ba5bd2fdbb3909d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -8220,7 +8220,7 @@ Transform:
   - {fileID: 1964754364}
   m_Father: {fileID: 790269211}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 48.665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 48.664}
 --- !u!114 &724652745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10724,7 +10724,7 @@ Transform:
   - {fileID: 1474513687}
   m_Father: {fileID: 1889829125}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.67}
 --- !u!114 &941741060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13858,6 +13858,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2193f913e5afe4b65b4732bd7f9700b4, type: 3}
   - {fileID: 8300000, guid: 5bc7c70b75f044f2aa034fdebe32e26e, type: 3}
   - {fileID: 8300000, guid: f851d88d0c1a54c549348cd1a2534a59, type: 3}
+  - {fileID: 8300000, guid: 5f73ff9f4e0e74c8b83bfd84ad3448f7, type: 3}
+  - {fileID: 8300000, guid: 28f543a3c4bb94163b873b322c474270, type: 3}
+  - {fileID: 8300000, guid: e57ff97a6c2ab40b8ad674cf8ade2069, type: 3}
+  - {fileID: 8300000, guid: 01df888a5d2fb4d6e95655aa55f47b65, type: 3}
+  - {fileID: 8300000, guid: 823593933c5614e87b8b1623fca3fc15, type: 3}
+  - {fileID: 8300000, guid: 851efe61f15034ee1be92e4d36cdf519, type: 3}
+  - {fileID: 8300000, guid: c905b93dc511c442f94b73a31726e68b, type: 3}
+  - {fileID: 8300000, guid: c751d1387af5d479db2d93327ec12d06, type: 3}
+  - {fileID: 8300000, guid: 50845ea28a0e044b2a6a9dd5a70d31e0, type: 3}
   lowpass: {fileID: 519420035}
   highpass: {fileID: 519420034}
 --- !u!4 &1171627283
@@ -14783,7 +14792,7 @@ Transform:
   - {fileID: 1672795969}
   m_Father: {fileID: 650463767}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -181.978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -181.97899}
 --- !u!114 &1329592890
 MonoBehaviour:
   m_ObjectHideFlags: 0
