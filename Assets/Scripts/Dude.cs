@@ -27,10 +27,14 @@ public class Dude : MonoBehaviour
     private float timeLeft;
     private bool ended;
     private bool canRestart;
+    private bool autoPull;
+
+    private List<Veggie> exes;
 
     private void Start()
     {
         timeLeft = 60 * 12;
+        exes = new List<Veggie>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,19 @@ public class Dude : MonoBehaviour
             veggie.transform.position = veggiePosition.position;
         }
 
+        if (autoPull)
+        {
+            pullAmount += Time.deltaTime * 5f;
+            anim.SetFloat("pull", pullAmount);
+
+            if (pullAmount >= 1f)
+            {
+                autoPull = false;
+            }
+            else
+                return;
+        }
+
         shownScore = Mathf.MoveTowards(shownScore, score, Time.deltaTime * 10f);
         scoreText.text = Mathf.FloorToInt(shownScore).ToString();
 
@@ -70,6 +87,8 @@ public class Dude : MonoBehaviour
             }
         }
 
+        DoPull();
+
         if (bubble.IsShown() || vegBubble.IsShown())
             return;
 
@@ -80,20 +99,13 @@ public class Dude : MonoBehaviour
             pc.body.velocity = Vector2.zero;
             pc.body.bodyType = RigidbodyType2D.Kinematic;
             pc.canControl = false;
-
-            if (!pulling)
-            {
-                inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
-                inputs.Initialize(Random.Range(3, 10));
-            }
-
             pulling = true;
 
             if (veggie.IsEx())
             {
                 if(veggie.CanPick())
                 {
-                    pullAmount = 1f;
+                    autoPull = true;
                     veggie.AllowEx();
                 }
                 else
@@ -106,6 +118,12 @@ public class Dude : MonoBehaviour
                     veggie = null;
                 }
             }
+
+            if (!autoPull && veggie)
+            {
+                inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
+                inputs.Initialize(Random.Range(3, 10));
+            }
         }
 
         if (veggie && button && carrying && !peekVeggie)
@@ -116,17 +134,36 @@ public class Dude : MonoBehaviour
 
         anim.SetBool("pulling", pulling);
         anim.SetFloat("pull", pullAmount);
+    }
 
-        if(pulling)
+    void DoPull()
+    {
+        if (pulling)
         {
-            if(pullAmount >= 1f)
+            if (pullAmount >= 1f)
             {
                 var text = veggie.GetIntro();
 
                 if (!veggie.IsEx())
-                    bubble.ShowMessage(text);
+                {
+                    var isFriend = false;
+                    foreach (var v in exes)
+                    {
+                        if (Random.value < 0.05f)
+                        {
+                            isFriend = true;
+                            veggie.SetFriend(v);
+                            break;
+                        }
+                    }
+
+                    if (!isFriend)
+                        bubble.ShowMessage(text);
+                }
                 else
+                {
                     veggie.AllowEx();
+                }
 
                 veggie.Increment();
 
@@ -143,11 +180,17 @@ public class Dude : MonoBehaviour
 
                 veggie.body.velocity = Vector2.zero;
                 veggie.body.angularVelocity = 0;
-                veggie.transform.rotation = Quaternion.Euler(Vector3.zero);
+                veggie.body.SetRotation(0);
 
                 inputs.appearer.HideWithDelay();
 
                 pc.canControl = true;
+
+                if (veggie.HasFriend())
+                {
+                    veggie.DenyCauseFriend();
+                    Drop();
+                }
             }
 
             float inputX = InputMagic.Instance.GetAxis(InputMagic.STICK_OR_DPAD_X);
@@ -157,7 +200,7 @@ public class Dude : MonoBehaviour
             if (Mathf.Abs(inputX) < treshold && Mathf.Abs(inputY) < treshold)
                 hasReset = true;
 
-            if(hasReset)
+            if (hasReset)
             {
                 if (inputY > treshold)
                     SendInput(0);
@@ -179,6 +222,7 @@ public class Dude : MonoBehaviour
         ended = true;
         pc.canControl = false;
         pc.body.velocity = new Vector2(0, pc.body.velocity.y);
+        pc.body.bodyType = RigidbodyType2D.Static;
         anim.SetFloat("speed", 0);
 
         gameOverDisplay.ShowWithText("You scored <color=#99C24D>" + score + "</color>", 1f);
@@ -195,6 +239,7 @@ public class Dude : MonoBehaviour
 
     private void Drop()
     {
+        exes.Add(veggie);
         score = 0;
         carrying = false;
         veggie.body.bodyType = RigidbodyType2D.Dynamic;

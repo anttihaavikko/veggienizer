@@ -21,6 +21,8 @@ public class Veggie : MonoBehaviour
 
     private int type;
 
+    private Veggie friend;
+
     private void Start()
     {
         if(isHidden)
@@ -149,8 +151,12 @@ public class Veggie : MonoBehaviour
 
     public bool CanPick()
     {
-        mad = !mad && Random.value < Mathf.Pow(0.6f, times);
-        return mad;
+        if (mad)
+            return false;
+
+        mad = Random.value < Mathf.Pow(0.6f, times);
+
+        return !mad;
     }
 
     public string GetExInfo()
@@ -186,6 +192,29 @@ public class Veggie : MonoBehaviour
         Speak(text);
     }
 
+    public void DenyCauseFriend()
+    {
+        times = 0;
+
+        var starts = new string[] {
+             "No way!",
+             "Get off me!",
+             "Hands off!",
+             "Oh hell no!"
+        };
+
+        var ends = new string[]
+        {
+            "I was a good friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ").",
+            "I'm a friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ") and you treated them like crap.",
+            "I'm a friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ") and you treated them awfully.",
+            "After how you treated (" + friend.GetName() + ") valued (" + friend.GetValue() + "), now way (hose)."
+        };
+
+        var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
+        Speak(text);
+    }
+
     public void AllowEx()
     {
         var starts = new string[] {
@@ -215,5 +244,15 @@ public class Veggie : MonoBehaviour
     public void Increment()
     {
         times++;
+    }
+
+    public void SetFriend(Veggie veg)
+    {
+        friend = veg;
+    }
+
+    public bool HasFriend()
+    {
+        return friend != null;
     }
 }
