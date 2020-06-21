@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{BAEDC0CA-FA3E-3B04-67F8-58EFA0B7DF77}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/InputMagic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Veggie.cs">
     <Files>
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="37" Column="43" />
-      <File FileName="Assets/Scripts/PlatformerController.cs" Line="160" Column="59" />
-      <File FileName="Assets/Scripts/Face.cs" Line="188" Column="67" />
-      <File FileName="Assets/Scripts/Dude.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/InputDisplay.cs" Line="49" Column="10" />
-      <File FileName="Assets/Scripts/Veggie.cs" Line="24" Column="1" />
-      <File FileName="Assets/Scripts/Appearer.cs" Line="27" Column="6" />
-      <File FileName="Assets/Scripts/Area.cs" Line="11" Column="15" />
-      <File FileName="Assets/Scripts/SpeechBubble.cs" Line="102" Column="56" />
+      <File FileName="Assets/Scripts/PlatformerController.cs" />
+      <File FileName="Assets/Scripts/Face.cs" />
+      <File FileName="Assets/Scripts/Dude.cs" />
+      <File FileName="Assets/Scripts/InputDisplay.cs" />
+      <File FileName="Assets/Scripts/Veggie.cs" Line="10" Column="33" />
+      <File FileName="Assets/Scripts/Appearer.cs" />
+      <File FileName="Assets/Scripts/Area.cs" />
+      <File FileName="Assets/Scripts/SpeechBubble.cs" />
       <File FileName="Assets/Scripts/InputMagic.cs" Line="548" Column="4" />
     </Files>
     <Pads>
@@ -25,7 +25,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="InputMagic.cs" selected="True" />
+                <Node name="Veggie.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -35,7 +35,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c0a7f1f0-6932-41a9-a5ef-8ee20915dd4f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="361ad040-db69-4158-8891-b0d6bf4c0445" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
