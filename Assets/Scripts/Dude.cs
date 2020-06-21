@@ -114,7 +114,7 @@ public class Dude : MonoBehaviour
                 else
                 {
                     veggie.DenyEx();
-                    inputs.appearer.Hide();
+                    inputs.Hide();
                     pulling = false;
                     pc.canControl = true;
                     pc.body.bodyType = RigidbodyType2D.Dynamic;
@@ -127,7 +127,7 @@ public class Dude : MonoBehaviour
 
             if (!autoPull && veggie)
             {
-                inputs.transform.position = veggie.transform.position + Vector3.up * 4.5f;
+                inputs.SetPosition(veggie.transform.position + Vector3.up * 4.5f);
                 var amount = Mathf.Clamp(Mathf.FloorToInt(veggie.GetValue() / 5f) + 3, 3, 9);
                 inputs.Initialize(amount);
             }
@@ -197,17 +197,17 @@ public class Dude : MonoBehaviour
                 veggie.body.angularVelocity = 0;
                 veggie.body.SetRotation(0);
 
-                inputs.appearer.HideWithDelay();
+                inputs.Hide();
 
                 pc.canControl = true;
 
-                if (veggie.HasFriend())
+                if (veggie && veggie.HasFriend())
                 {
                     veggie.DenyCauseFriend();
                     Drop();
                 }
 
-                if(veggie.HasFailed())
+                if(veggie && veggie.HasFailed())
                 {
                     veggie.DenyCauseFail();
                     Drop();
@@ -311,10 +311,10 @@ public class Dude : MonoBehaviour
 
         if (collision.gameObject.tag == "Veggie Activation")
         {
-            if(Random.value < 0.1f + currentValue * 0.01f)
+            if(Random.value < 0.1f + score * 0.01f)
             {
                 var v = collision.gameObject.GetComponentInParent<Veggie>();
-                v.Appear(currentValue);
+                v.Appear(score);
                 v.bubble = vegBubble;
             }
         }
