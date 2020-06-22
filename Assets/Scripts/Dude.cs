@@ -103,6 +103,7 @@ public class Dude : MonoBehaviour
             pc.body.bodyType = RigidbodyType2D.Kinematic;
             pc.canControl = false;
             pulling = true;
+            veggie.bubble = vegBubble;
 
             EffectManager.Instance.AddEffectToParent(1, veggie.transform.position + Vector3.down * 0.5f, veggie.transform);
 
