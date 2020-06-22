@@ -56,9 +56,12 @@ public class Veggie : MonoBehaviour
                 return GetRandom(new string[]{
                     "What a specimen",
                     "Ohh, sweet sweet (yam)",
-                    "What a thick (yam)"
+                    "What a thick (yam)",
+                    "Oh nice, (yams) are fun. This one is all smooth"
                 }, new string[]{
-                    "I could eat these all day!"
+                    "I could eat these all day!",
+                    "I really dig the (color) of this one.",
+                    "Maybe I'll get some (yam jam) tonight..."
                 });
             // carrot
             case 1:
@@ -70,7 +73,9 @@ public class Veggie : MonoBehaviour
                 }, new string[]{
                     "I could eat these all day!",
                     "Whats up doc?",
-                    "Its vibrant color matches my hair!"
+                    "Its vibrant (color) matches my hair!",
+                    "I really dig the (color) of this one.",
+                    "I can barely carry this one."
                 });
             // ginger
             case 2:
@@ -80,24 +85,32 @@ public class Veggie : MonoBehaviour
                 }, new string[]{
                     "So damn fresh!",
                     "Fresh like an ocean breeze.",
-                    "I love (gingers)! I have a feeling it originates from Jessica Rabbit.",
-                    "Some people think they have no souls..."
+                    "I love (gingers)! I have a feeling it originates from (Jessica Rabbit).",
+                    "Some people think they have (no souls)..."
                 });
             // potato
             case 3:
                 return GetRandom(new string[]{
                     "What a specimen",
                     "The humble (potato)",
-                    "What a classic! A (potato)"
+                    "What a classic! A (potato)",
+                    "It's a (tater)",
+                    "Just a (spud)"
                 }, new string[]{
-                    "I could eat these all day!"
+                    "I could eat these all day!",
+                    "I like mine (french)!",
+                    "A bit (lumpy) but that's the way I like em.",
+                    "It's so (versatile)! You can even make (booze) from em...",
+                    "It's so (versatile)! You can even make (burn remedy) from em...",
+                    "It's so (versatile)! You can even make (glue) from em..."
                 });
             // turnip
             case 4:
                 return GetRandom(new string[]{
                     "What a specimen",
                     "Ah, a (turnip)",
-                    "Oh my, it's a (turnip)"
+                    "Oh my, it's a (turnip)",
+                    "Whoa, (brassica rapa)"
                 }, new string[]{
                     "Now I feel like Mario.",
                     "Some people throw these at shy guys..."
@@ -105,10 +118,13 @@ public class Veggie : MonoBehaviour
             // beet
             case 5:
                 return GetRandom(new string[]{
+                    "That's a (beta vulgaris), commonly known as (beetroot)",
                     "What a specimen",
                     "What a vibrant color! (Beets) are always great"
                 }, new string[]{
-                    "I could eat these all day!"
+                    "I could eat these all day!",
+                    "I really dig the color of this one.",
+                    "These can stave off so called (garlic-breath)."
                 });
             default:
                 return "Nice, this (" + GetName() + ") is worth (" + value + ").";
@@ -121,8 +137,10 @@ public class Veggie : MonoBehaviour
              " and it's worth (VALUE). ",
              " worth (VALUE). ",
              " valued at (VALUE). ",
+             " and it's a perfect (VALUE)! ",
              " coming strong with a value of (VALUE). ",
-             " coming in hot with a value of (VALUE). "
+             " coming in hot with a value of (VALUE). ",
+             " worth a whooping (VALUE). So fine! ",
         };
 
         var text = options.OrderBy(s => Random.value).First();
@@ -178,7 +196,9 @@ public class Veggie : MonoBehaviour
              "Go (screw) yourself!",
              "Eww, (no)!",
              "What! Are you (kidding)?",
-             "Ew! (Just ew)!"
+             "Ew! (Just ew)!",
+             "Forget it buddy!",
+             "Get lost!"
         };
 
         var ends = new string[]
@@ -186,7 +206,8 @@ public class Veggie : MonoBehaviour
             "Not after how (you've treated) me.",
             "Not after all we've (been through).",
             "You treated me like (garbage).",
-            "You treated me like a (day old produce)."
+            "You treated me like a (day old produce).",
+            "We just do not work (together)."
         };
 
         var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
@@ -201,7 +222,11 @@ public class Veggie : MonoBehaviour
              "No way!",
              "Get off me!",
              "Hands off!",
-             "Oh hell no!"
+             "Oh hell no!",
+             "Psh, move along!",
+             "Forget it buddy!",
+             "Get lost!",
+             "I think not!"
         };
 
         var ends = new string[]
@@ -209,7 +234,7 @@ public class Veggie : MonoBehaviour
             "I was a good friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ").",
             "I'm a friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ") and you treated them like crap.",
             "I'm a friend of (" + friend.GetName() + ") valued (" + friend.GetValue() + ") and you treated them awfully.",
-            "After how you treated (" + friend.GetName() + ") valued (" + friend.GetValue() + "), now way (hose)."
+            "After how you treated (" + friend.GetName() + ") valued (" + friend.GetValue() + ")? No way (Jose)."
         };
 
         var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
@@ -224,14 +249,17 @@ public class Veggie : MonoBehaviour
              "No way!",
              "Get off me!",
              "Hands off!",
-             "Oh hell no!"
+             "Oh hell no!",
+             "I think not!",
+             "Ha! With the likes of (you)?"
         };
 
         var ends = new string[]
         {
             "You (missed) your chance.",
             "I'm way out of your (league)!",
-            "Do I need a (restraining order)?"
+            "Do I need a (restraining order)?",
+            "I'm already (taken)!"
         };
 
         var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
@@ -257,7 +285,8 @@ public class Veggie : MonoBehaviour
             "I still have (feelings) for you.",
             "Lets give it (another try)...",
             "(Please) never leave me again...",
-            "I was here (waiting) for you."
+            "I was here (waiting) for you.",
+            "I was here (waiting) for you all along."
         };
 
         var text = starts.OrderBy(s => Random.value).First() + "\n" + ends.OrderBy(s => Random.value).First();
